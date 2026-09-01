@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUMBHARBAJAR - Traditional Indian Pottery Marketplace</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Fixed Welcome Screen Animation -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-container">
+            <img src="images/logo.png" alt="KUMBHARBAJAR Logo" class="welcome-logo-image">
+            <h1 class="welcome-brand">KUMBHARBAJAR</h1>
+            <p class="welcome-subtitle">Traditional Pottery Meets Modern Marketplace</p>
+            
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Loading Traditional Artistry...</p>
+
+            <button class="skip-welcome-btn" id="skipWelcomeBtn">Skip Intro <i class="fas fa-forward"></i></button>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo.png" alt="KUMBHARBAJAR Logo" class="logo-image">
+                <h2>KUMBHARBAJAR</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#products">Products</a></li>
+                <li><a href="#spotlight">Master Potters</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#register">Join as Potter</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="dashboard.html">My Orders</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="theme-switcher">
+                    <button class="cart-btn" id="themeBtn" title="Theme Selector">
+                        <i class="fas fa-palette"></i>
+                    </button>
+                    <div class="theme-options" id="themeOptions">
+                        <div class="theme-option" data-theme="earth"><span>Earth</span></div>
+                        <div class="theme-option" data-theme="ocean"><span>Ocean</span></div>
+                        <div class="theme-option" data-theme="sunset"><span>Sunset</span></div>
+                        <div class="theme-option" data-theme="forest"><span>Forest</span></div>
+                    </div>
+                </div>
+
+                <button class="cart-btn" id="cartBtn" title="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-tagline">
+                    <i class="fas fa-certificate"></i> 100% Handcrafted Indian Heritage Clayware
+                </div>
+                <h1>Traditional Pottery Meets Modern Marketplace</h1>
+                <p>Discover authentic handcrafted pottery directly from skilled master artisans across India. Bring home unique, eco-friendly ceramic & clay treasures.</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="nav-btn btn-primary">Explore Products <i class="fas fa-arrow-down"></i></a>
+                    <a href="#register" class="nav-btn btn-secondary">Join as Potter <i class="fas fa-hands"></i></a>
+                </div>
+                <div class="hero-stats-row">
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Master Potters</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>10,000+</h3>
+                        <p>Happy Shoppers</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Eco Natural Clay</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="images/potter.webp" alt="Traditional Potter Making Pottery">
+                <div class="floating-experience-badge">
+                    <i class="fas fa-award fa-2x" style="color:var(--gold);"></i>
+                    <div style="text-align:left;">
+                        <h4 style="margin:0; font-size:0.95rem;">Empowering Artisans</h4>
+                        <p style="margin:0; font-size:0.8rem; color:var(--text-muted);">Direct earnings for rural families</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Badges Bar -->
+    <div style="background:var(--dark-brown); color:white; padding:2rem 1rem;">
+        <div style="max-width:1320px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:2rem; text-align:center;">
+            <div>
+                <i class="fas fa-hands-holding-child fa-2x" style="color:var(--accent-color); margin-bottom:0.5rem;"></i>
+                <h4 style="color:white; margin-bottom:0.2rem;">Direct Potter Profits</h4>
+                <p style="font-size:0.85rem; color:#E8DFD1;">Zero middlemen fees for potters</p>
+            </div>
+            <div>
+                <i class="fas fa-leaf fa-2x" style="color:var(--accent-color); margin-bottom:0.5rem;"></i>
+                <h4 style="color:white; margin-bottom:0.2rem;">100% Natural Clay</h4>
+                <p style="font-size:0.85rem; color:#E8DFD1;">Lead-free, organic & non-toxic</p>
+            </div>
+            <div>
+                <i class="fas fa-box-open fa-2x" style="color:var(--accent-color); margin-bottom:0.5rem;"></i>
+                <h4 style="color:white; margin-bottom:0.2rem;">Safe Transit Shipping</h4>
+                <p style="font-size:0.85rem; color:#E8DFD1;">Shockproof protective packaging</p>
+            </div>
+            <div>
+                <i class="fas fa-water fa-2x" style="color:var(--accent-color); margin-bottom:0.5rem;"></i>
+                <h4 style="color:white; margin-bottom:0.2rem;">Alkaline Health Care</h4>
+                <p style="font-size:0.85rem; color:#E8DFD1;">Naturally cools & balances pH</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <section id="products" class="section-container">
+        <div class="section-header">
+            <h2>Artisanal Pottery Collection</h2>
+            <p>Hand-thrown, kiln-fired, and crafted with 100% natural Indian clay</p>
+        </div>
+
+        <div class="category-filter-bar">
+            <button class="category-chip active" data-category="all">All Products</button>
+            <button class="category-chip" data-category="diyas">Festive Diyas</button>
+            <button class="category-chip" data-category="cookware">Clay Cookware</button>
+            <button class="category-chip" data-category="tableware">Earthy Tableware</button>
+            <button class="category-chip" data-category="home-decor">Home Decor & Vases</button>
+            <button class="category-chip" data-category="planters">Garden Planters</button>
+        </div>
+
+        <!-- Live Product Search Input -->
+        <div style="max-width: 540px; margin: 0 auto 2.5rem auto; position: relative;">
+            <input type="text" id="productSearchInput" placeholder="🔍 Search pottery by name (e.g. Matka, Diya, Kulhad, Vase)..." 
+                style="width: 100%; padding: 0.95rem 1.4rem; border-radius: 30px; border: 1.5px solid var(--border-color); font-family: inherit; font-size: 0.95rem; box-shadow: var(--shadow-sm);">
+        </div>
+
+        <div class="product-grid" id="productGrid">
+            <!-- Dynamically rendered by app.js -->
+        </div>
+    </section>
+
+    <!-- Master Potters Spotlight Section -->
+    <section id="spotlight" class="section-container" style="background: var(--warm-white); border-radius: var(--radius-lg);">
+        <div class="section-header">
+            <h2>Meet Our Master Artisans</h2>
+            <p>Preserving centuries of Indian heritage pottery traditions</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+            <div style="background: #FFF; border-radius: var(--radius-md); padding: 2rem; border: 1px solid var(--border-color); text-align: center; box-shadow: var(--shadow-sm);">
+                <img src="images/potter.webp" alt="Ramesh Prajapati" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1.25rem; border: 4px solid var(--primary-color);">
+                <h3 style="margin-bottom: 0.3rem;">Ramesh Prajapati</h3>
+                <p style="color: var(--terracotta); font-weight: 600; font-size: 0.88rem; margin-bottom: 1rem;"><i class="fas fa-map-marker-alt"></i> Khurja, Uttar Pradesh</p>
+                <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.25rem;">Master artisan with 25+ years experience hand-throwing terracotta matkas, cooking handis, and tea kulhads on traditional wooden wheels.</p>
+                <span class="product-badge" style="position: static; display: inline-block;">Terracotta Specialist</span>
+            </div>
+
+            <div style="background: #FFF; border-radius: var(--radius-md); padding: 2rem; border: 1px solid var(--border-color); text-align: center; box-shadow: var(--shadow-sm);">
+                <img src="images/glazing.jpeg" alt="Sunita Devi" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1.25rem; border: 4px solid var(--primary-color);">
+                <h3 style="margin-bottom: 0.3rem;">Sunita Devi</h3>
+                <p style="color: var(--terracotta); font-weight: 600; font-size: 0.88rem; margin-bottom: 1rem;"><i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan</p>
+                <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.25rem;">National award-winning artisan practicing Jaipur Blue Pottery techniques, hand-painting floral motifs on ceramic quartz vases and festive diyas.</p>
+                <span class="product-badge" style="position: static; display: inline-block; background: #006994;">Blue Pottery Awardee</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="section-container">
+        <div class="section-header">
+            <h2>Why Choose Kumbhar Bazar</h2>
+            <p>Bringing health, heritage, and sustainability into your home</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem;">
+            <div style="background:#FFF; padding:2rem; border-radius:var(--radius-md); border:1px solid var(--border-color); box-shadow:var(--shadow-sm);">
+                <i class="fas fa-heart-pulse fa-2x" style="color:var(--primary-color); margin-bottom:1rem;"></i>
+                <h4>Natural Alkaline Water</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Clay matkas cool water naturally via evaporation while infusing essential minerals and maintaining pH balance.</p>
+            </div>
+            <div style="background:#FFF; padding:2rem; border-radius:var(--radius-md); border:1px solid var(--border-color); box-shadow:var(--shadow-sm);">
+                <i class="fas fa-utensils fa-2x" style="color:var(--primary-color); margin-bottom:1rem;"></i>
+                <h4>Nutrient Slow Cooking</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Clay handis retain 100% of food nutrients and natural moisture, producing richer, healthier homemade meals.</p>
+            </div>
+            <div style="background:#FFF; padding:2rem; border-radius:var(--radius-md); border:1px solid var(--border-color); box-shadow:var(--shadow-sm);">
+                <i class="fas fa-hands-holding-circle fa-2x" style="color:var(--primary-color); margin-bottom:1rem;"></i>
+                <h4>Empowering Rural Artisans</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Every purchase directly sustains traditional Indian pottery families and protects centuries-old heritage crafts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Potter Application Form Section -->
+    <section id="register" class="section-container">
+        <div class="potter-form-section">
+            <h2>Apply to Become a Verified Potter</h2>
+            <p>Are you a traditional artisan? Join Kumbhar Bazar to showcase your pottery to lakhs of online customers nationwide.</p>
+            
+            <form id="potterForm">
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Master Potter Full Name</label>
+                        <input type="text" id="potterName" placeholder="e.g. Ramesh Prajapati" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-store"></i> Workshop / Studio Name</label>
+                        <input type="text" id="potterWorkshop" placeholder="e.g. Prajapati Clay Works" required>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email Address</label>
+                        <input type="email" id="potterEmail" placeholder="yourname@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Phone Number</label>
+                        <input type="tel" id="potterPhone" placeholder="+91 9876543210" required>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label><i class="fas fa-map-marker-alt"></i> Location (City / State)</label>
+                        <input type="text" id="potterLocation" placeholder="e.g. Khurja, Uttar Pradesh" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-certificate"></i> Craft Speciality</label>
+                        <select id="potterSpeciality" required>
+                            <option value="Terracotta & Clay Cookware">Terracotta & Clay Cookware</option>
+                            <option value="Blue Pottery & Vases">Blue Pottery & Vases</option>
+                            <option value="Hand-painted Festival Diyas">Hand-painted Festival Diyas</option>
+                            <option value="Chai Kulhads & Tableware">Chai Kulhads & Tableware</option>
+                            <option value="Statues & Sculptures">Statues & Sculptures</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label><i class="fas fa-history"></i> Experience</label>
+                        <input type="text" id="potterExp" placeholder="e.g. 15 Years of Pottery Crafting">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-pen"></i> Short Bio / Workshop Story</label>
+                        <textarea id="potterBio" rows="2" placeholder="Tell us about your pottery tradition..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="nav-btn btn-primary" style="width:100%; justify-content:center; padding:1rem; font-size:1.05rem;">
+                    Submit Application for Admin Review <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-container">
+        <div class="section-header">
+            <h2>Customer Care & Inquiry Desk</h2>
+            <p>Have questions about pottery care, custom bulk orders, or shipping?</p>
+        </div>
+
+        <div style="max-width: 680px; margin:0 auto; background:#FFF; padding:2.5rem; border-radius:var(--radius-md); border:1px solid var(--border-color); box-shadow:var(--shadow-sm);">
+            <form id="contactForm">
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="contactName" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="contactEmail" placeholder="email@domain.com" required>
+                    </div>
+                </div>
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="contactPhone" placeholder="+91 Phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" id="contactSubject" placeholder="e.g. Bulk Order Request" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Message / Complaint</label>
+                    <textarea id="contactMessage" rows="4" placeholder="How can we assist you?" required></textarea>
+                </div>
+                <button type="submit" class="nav-btn btn-primary" style="width:100%; justify-content:center;">
+                    Send Message <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background:var(--dark-brown); color:#E0D5C1; padding:4rem 2rem 2rem; margin-top:5rem;">
+        <div style="max-width:1320px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:2.5rem;">
+            <div>
+                <h3 style="color:var(--accent-color); margin-bottom:1rem; font-size:1.6rem;">KUMBHARBAJAR</h3>
+                <p style="font-size:0.92rem; opacity:0.85;">Connecting traditional Indian potters directly with online marketplace shoppers nationwide.</p>
+            </div>
+            <div>
+                <h4 style="color:#FFF; margin-bottom:1rem;">Standalone Portals</h4>
+                <ul style="list-style:none; line-height:2.2;">
+                    <li><a href="potter.html" style="color:var(--cream);"><i class="fas fa-store"></i> Potter Seller Portal (`/potter.html`)</a></li>
+                    <li><a href="admin.html" style="color:var(--gold);"><i class="fas fa-crown"></i> Admin Control Panel (`/admin.html`)</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color:#FFF; margin-bottom:1rem;">Quick Navigation</h4>
+                <ul style="list-style:none; line-height:2.2;">
+                    <li><a href="#products">Artisanal Catalog</a></li>
+                    <li><a href="#spotlight">Master Potters</a></li>
+                    <li><a href="#register">Potter Registration Form</a></li>
+                    <li><a href="dashboard.html">Order Tracking</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center; padding-top:2.5rem; margin-top:2.5rem; border-top:1px solid rgba(255,255,255,0.1); font-size:0.88rem; opacity:0.8;">
+            © 2026 Kumbhar Bazar. Handcrafted with pride across India.
+        </div>
+    </footer>
+
+    <!-- App Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth-modal.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

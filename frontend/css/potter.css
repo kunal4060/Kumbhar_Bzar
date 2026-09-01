@@ -1,0 +1,224 @@
+/* Potter Seller Portal Premium Stylesheet */
+:root {
+    --potter-primary: #8B4513;
+    --potter-primary-gradient: linear-gradient(135deg, #8B4513 0%, #B85B14 100%);
+    --potter-dark: #1E120B;
+    --potter-accent: #D2691E;
+    --potter-light: #F9F5F0;
+    --sidebar-width: 270px;
+}
+
+body {
+    background-color: #F4EFEA;
+    font-family: 'Outfit', sans-serif;
+    color: #2C1810;
+}
+
+.portal-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.portal-sidebar {
+    width: var(--sidebar-width);
+    background: linear-gradient(180deg, #24140C 0%, #150A05 100%);
+    color: #FFF;
+    padding: 2rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+}
+
+.portal-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 2rem;
+}
+
+.portal-brand i {
+    font-size: 1.8rem;
+    color: #F4A460;
+}
+
+.portal-brand h3 {
+    font-size: 1.2rem;
+    color: #FFF;
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+}
+
+.portal-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    list-style: none;
+    padding: 0;
+}
+
+.portal-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1.15rem;
+    color: #CBBCA8;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.portal-nav a:hover, .portal-nav a.active {
+    background: var(--potter-primary-gradient);
+    color: #FFF;
+    box-shadow: 0 4px 14px rgba(139, 69, 19, 0.3);
+}
+
+.portal-content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    padding: 2.5rem 3rem;
+}
+
+.portal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.75rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: #FFF;
+    padding: 1.75rem;
+    border-radius: 16px;
+    border: 1px solid #E8DFD1;
+    display: flex;
+    align-items: center;
+    gap: 1.35rem;
+    box-shadow: 0 4px 16px rgba(44, 24, 16, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+
+.stat-icon {
+    width: 56px;
+    height: 56px;
+    background: #FAF0E6;
+    color: var(--potter-primary);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.stat-info h4 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #2C1810;
+}
+
+.stat-info p {
+    font-size: 0.85rem;
+    color: #7A6A56;
+    margin: 0;
+    font-weight: 500;
+}
+
+.card-box {
+    background: #FFF;
+    border-radius: 16px;
+    border: 1px solid #E8DFD1;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 16px rgba(44, 24, 16, 0.05);
+}
+
+.card-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #F4EFEA;
+}
+
+.card-box-header h3 {
+    font-size: 1.25rem;
+    color: #2C1810;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    padding: 1rem 1.15rem;
+    text-align: left;
+    border-bottom: 1px solid #F4EFEA;
+    font-size: 0.92rem;
+}
+
+.data-table th {
+    background: #FAF6F0;
+    color: #2C1810;
+    font-weight: 600;
+}
+
+.badge-status {
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.badge-pending { background: #FEF3C7; color: #92400E; }
+.badge-processing { background: #E0F2FE; color: #075985; }
+.badge-shipped { background: #DCFCE7; color: #166534; }
+.badge-delivered { background: #D1FAE5; color: #065F46; }
+
+/* Modal Box */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 10, 5, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    padding: 1rem;
+}
+
+.modal-box {
+    background: #FFF;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 560px;
+    padding: 2.5rem;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}

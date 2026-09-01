@@ -1,0 +1,254 @@
+const fs = require('fs');
+const path = require('path');
+
+const DB_PATH = path.join(__dirname, '../data/db.json');
+
+// Initial Seed Data
+const initialData = {
+  users: [
+    {
+      id: "usr_admin",
+      name: "Master Admin",
+      email: "admin@kumbharbazar.com",
+      password: "admin123", // Simple hash/matching for demo
+      role: "admin",
+      phone: "+91 9876543210",
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: "usr_potter_1",
+      name: "Ramesh Prajapati",
+      email: "ramesh@kumbharbazar.com",
+      password: "potter123",
+      role: "potter",
+      workshopName: "Prajapati Pottery Works",
+      location: "Khurja, Uttar Pradesh",
+      phone: "+91 9812345678",
+      speciality: "Terracotta & Traditional Water Pots",
+      bio: "Master artisan with 25+ years experience crafting eco-friendly clayware.",
+      isApproved: true,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: "usr_potter_2",
+      name: "Sunita Devi",
+      email: "sunita@kumbharbazar.com",
+      password: "potter123",
+      role: "potter",
+      workshopName: "Mitti Kala Kendra",
+      location: "Jaipur, Rajasthan",
+      phone: "+91 9823456789",
+      speciality: "Blue Pottery & Hand-painted Diyas",
+      bio: "National award-winning potter specializing in traditional blue pottery designs.",
+      isApproved: true,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: "usr_cust_1",
+      name: "Ananya Sharma",
+      email: "customer@gmail.com",
+      password: "customer123",
+      role: "customer",
+      phone: "+91 9898989898",
+      address: "B-402, Green Enclave, Mumbai, MH",
+      createdAt: new Date().toISOString()
+    }
+  ],
+  products: [
+    {
+      id: "prod_1",
+      title: "Handcrafted Earth Terracotta Water Matka (5L)",
+      category: "cookware",
+      price: 699,
+      originalPrice: 899,
+      stock: 25,
+      potterId: "usr_potter_1",
+      potterName: "Ramesh Prajapati",
+      workshopName: "Prajapati Pottery Works",
+      image: "images/matka.avif",
+      description: "Naturally cools water while adding essential minerals. Hand-thrown on traditional wheel with pure natural clay.",
+      rating: 4.9,
+      reviewsCount: 42,
+      isFeatured: true,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: "prod_2",
+      title: "Hand-painted Festival Clay Diya Set (Pack of 12)",
+      category: "diyas",
+      price: 299,
+      originalPrice: 450,
+      stock: 100,
+      potterId: "usr_potter_2",
+      potterName: "Sunita Devi",
+      workshopName: "Mitti Kala Kendra",
+      image: "images/diya.jpg",
+      description: "Vibrant, eco-friendly terracotta diyas painted with organic non-toxic colors. Perfect for Diwali & festive decor.",
+      rating: 5.0,
+      reviewsCount: 88,
+      isFeatured: true,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: "prod_3",
+      title: "Traditional Clay Cooking Handi with Lid (2.5L)",
+      category: "cookware",
+      price: 549,
+      originalPrice: 750,
+      stock: 18,
+      potterId: "usr_potter_1",
+      potterName: "Ramesh Prajapati",
+      workshopName: "Prajapati Pottery Works",
+      image: "images/cookpots.avif",
+      description: "Enhances food flavor and retains nutrition. Unglazed pure clay handi for authentic slow cooking.",
+      rating: 4.8,
+      reviewsCount: 35,
+      isFeatured: true,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: "prod_4",
+      title: "Pure Clay Tea Kulhad Set (Pack of 6)",
+      category: "tableware",
+      price: 249,
+      originalPrice: 350,
+      stock: 50,
+      potterId: "usr_potter_1",
+      potterName: "Ramesh Prajapati",
+      workshopName: "Prajapati Pottery Works",
+      image: "images/tea.webp",
+      description: "Traditional earthy chai kulhads that give authentic Indian earthy aroma to your morning tea.",
+      rating: 4.9,
+      reviewsCount: 64,
+      isFeatured: false,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: "prod_5",
+      title: "Royal Blue Pottery Flower Vase",
+      category: "home-decor",
+      price: 899,
+      originalPrice: 1200,
+      stock: 12,
+      potterId: "usr_potter_2",
+      potterName: "Sunita Devi",
+      workshopName: "Mitti Kala Kendra",
+      image: "images/vases.jpg",
+      description: "Exquisite Jaipur blue pottery vase handcrafted with quartz stone powder and hand-painted floral motifs.",
+      rating: 5.0,
+      reviewsCount: 29,
+      isFeatured: true,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: "prod_6",
+      title: "Terracotta Garden Planter Pot",
+      category: "planters",
+      price: 399,
+      originalPrice: 599,
+      stock: 30,
+      potterId: "usr_potter_1",
+      potterName: "Ramesh Prajapati",
+      workshopName: "Prajapati Pottery Works",
+      image: "images/plant.jpg",
+      description: "Breathable terracotta planter pot that keeps plant roots healthy and prevents waterlogging.",
+      rating: 4.7,
+      reviewsCount: 19,
+      isFeatured: false,
+      createdAt: new Date().toISOString()
+    }
+  ],
+  orders: [
+    {
+      id: "ORD-10921",
+      customerId: "usr_cust_1",
+      customerName: "Ananya Sharma",
+      customerEmail: "customer@gmail.com",
+      customerPhone: "+91 9898989898",
+      deliveryAddress: "B-402, Green Enclave, Mumbai, MH - 400053",
+      items: [
+        {
+          productId: "prod_1",
+          title: "Handcrafted Earth Terracotta Water Matka (5L)",
+          price: 699,
+          quantity: 1,
+          potterId: "usr_potter_1"
+        },
+        {
+          productId: "prod_4",
+          title: "Pure Clay Tea Kulhad Set (Pack of 6)",
+          price: 249,
+          quantity: 1,
+          potterId: "usr_potter_1"
+        }
+      ],
+      subtotal: 948,
+      shipping: 50,
+      totalAmount: 998,
+      status: "Processing", // Pending, Processing, Shipped, Delivered, Cancelled
+      paymentMethod: "UPI / Online Payment",
+      paymentStatus: "Paid",
+      createdAt: new Date(Date.now() - 86400000 * 2).toISOString()
+    }
+  ],
+  potterApplications: [
+    {
+      id: "APP-801",
+      name: "Suresh Kumar",
+      email: "suresh.pottery@gmail.com",
+      phone: "+91 9765432109",
+      workshopName: "Suresh Clay Arts",
+      location: "Varanasi, Uttar Pradesh",
+      speciality: "Terracotta Statues & Decorative Lamps",
+      experience: "15 Years",
+      bio: "Heritage potter preserving ancient Banaras clay art techniques.",
+      status: "Pending", // Pending, Approved, Rejected
+      submittedAt: new Date(Date.now() - 86400000 * 1).toISOString()
+    }
+  ],
+  complaints: [
+    {
+      id: "CMP-401",
+      name: "Vikram Malhotra",
+      email: "vikram@gmail.com",
+      phone: "+91 9123456780",
+      subject: "Inquiry about bulk custom terracotta order",
+      message: "Hello team, I want to order 200 custom tea kulhads for an upcoming wedding event in Delhi. Please guide me.",
+      status: "Open", // Open, Resolved
+      response: "",
+      submittedAt: new Date(Date.now() - 86400000 * 3).toISOString()
+    }
+  ]
+};
+
+function ensureDataDir() {
+  const dir = path.dirname(DB_PATH);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+}
+
+function getDB() {
+  ensureDataDir();
+  if (!fs.existsSync(DB_PATH)) {
+    fs.writeFileSync(DB_PATH, JSON.stringify(initialData, null, 2), 'utf8');
+    return initialData;
+  }
+  try {
+    const raw = fs.readFileSync(DB_PATH, 'utf8');
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error("Error reading database file, using fallback:", err);
+    return initialData;
+  }
+}
+
+function saveDB(data) {
+  ensureDataDir();
+  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2), 'utf8');
+}
+
+module.exports = {
+  getDB,
+  saveDB
+};

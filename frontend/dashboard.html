@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - KUMBHARBAJAR</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo.png" alt="KUMBHARBAJAR Logo" class="logo-image">
+                <h2>KUMBHARBAJAR</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="index.html#register">Join Us</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div id="navUserContainer"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="section-container" style="padding-top:7rem; min-height:80vh;">
+        <div class="section-header">
+            <h2>Your Pottery Orders & Delivery Tracking</h2>
+            <p>Track your handcrafted clay shipments directly from master artisans</p>
+        </div>
+
+        <div id="ordersContainer" style="max-width:900px; margin:0 auto;">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth-modal.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (window.updateNavUserUI) window.updateNavUserUI();
+
+            window.AuthModal.requireAuth(async (user) => {
+                const container = document.getElementById('ordersContainer');
+                container.innerHTML = `<div style="text-align:center; padding:3rem;"><i class="fas fa-spinner fa-spin fa-2x"></i><p>Fetching your orders...</p></div>`;
+
+                const res = await window.API.getOrders();
+                if (!res.success || !res.orders || res.orders.length === 0) {
+                    container.innerHTML = `
+                        <div style="text-align:center; padding:3rem; background:#FFF; border-radius:12px; border:1px solid var(--border-color);">
+                            <i class="fas fa-box-open fa-3x" style="color:var(--text-muted); margin-bottom:1rem;"></i>
+                            <h3>No orders placed yet</h3>
+                            <p style="color:var(--text-muted);">Explore our handmade pottery collection and support local artisans.</p>
+                            <a href="index.html#products" class="nav-btn btn-primary" style="display:inline-block; margin-top:1rem;">Browse Pottery Products</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = res.orders.map(order => `
+                    <div style="background:#FFF; border-radius:12px; border:1px solid var(--border-color); padding:1.5rem; margin-bottom:1.5rem; box-shadow:var(--shadow-sm);">
+                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #EEE; padding-bottom:1rem; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+                            <div>
+                                <h4 style="margin:0; font-size:1.1rem; color:var(--dark-brown);">Order ${order.id}</h4>
+                                <small style="color:var(--text-muted);">Placed on ${new Date(order.createdAt).toLocaleDateString()}</small>
+                            </div>
+                            <div>
+                                <span class="badge-status badge-processing" style="font-size:0.85rem; padding:0.4rem 0.8rem;">
+                                    Status: ${order.status}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom:1rem;">
+                            <h5 style="margin-bottom:0.5rem;">Items:</h5>
+                            ${order.items.map(item => `
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                                    <span>${item.title} (x${item.quantity})</span>
+                                    <strong>₹${item.price * item.quantity}</strong>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #EEE; padding-top:0.75rem;">
+                            <span style="font-size:0.85rem; color:var(--text-muted);"><i class="fas fa-map-marker-alt"></i> ${order.deliveryAddress}</span>
+                            <span style="font-size:1.1rem; font-weight:700; color:var(--primary-color);">Total: ₹${order.totalAmount}</span>
+                        </div>
+                    </div>
+                `).join('');
+            });
+        });
+    </script>
+</body>
+</html>

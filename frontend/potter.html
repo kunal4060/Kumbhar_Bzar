@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potter Seller Portal - KUMBHARBAJAR</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/potter.css">
+</head>
+<body>
+
+    <!-- Potter Login Screen (If Logged Out) -->
+    <div id="potterAuthScreen" style="display:flex; justify-content:center; align-items:center; min-height:100vh; background:#FAF6F0; padding:1rem;">
+        <div class="auth-modal-card" style="max-width:440px;">
+            <div class="auth-modal-header">
+                <div class="auth-logo">
+                    <i class="fas fa-store"></i>
+                    <span>POTTER SELLER PORTAL</span>
+                </div>
+                <h3>Potter Workshop Sign In</h3>
+                <p style="font-size:0.85rem; color:#666;">Access your pottery inventory, manage customer orders, and view sales earnings</p>
+            </div>
+
+            <form id="potterLoginForm">
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Potter Email Address</label>
+                    <input type="email" id="potterEmailInput" value="ramesh@kumbharbazar.com" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="potterPassInput" value="potter123" required>
+                </div>
+                <div class="auth-error-msg" id="potterLoginError"></div>
+                <button type="submit" class="auth-submit-btn">
+                    Access Workshop Dashboard <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="quick-demo-accounts">
+                <p>⚡ Quick Demo Autofill:</p>
+                <button type="button" class="demo-chip" id="demoPotterFillBtn">
+                    Ramesh Prajapati (Master Potter)
+                </button>
+            </div>
+
+            <div style="text-align:center; margin-top:1.5rem; font-size:0.85rem;">
+                <a href="index.html" style="color:var(--potter-primary);"><i class="fas fa-globe"></i> Back to Main Marketplace</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Potter Dashboard Layout (If Logged In) -->
+    <div class="portal-layout" id="potterPortalApp" style="display:none;">
+        <aside class="portal-sidebar">
+            <div class="portal-brand">
+                <i class="fas fa-hands-holding"></i>
+                <div>
+                    <h3>Potter Workshop</h3>
+                    <small style="color:#F4A460;">Kumbhar Bazar Seller</small>
+                </div>
+            </div>
+            <ul class="portal-nav">
+                <li><a href="#overview" class="active"><i class="fas fa-chart-line"></i> Sales Overview</a></li>
+                <li><a href="#products"><i class="fas fa-boxes"></i> Product Catalog</a></li>
+                <li><a href="#orders"><i class="fas fa-shipping-fast"></i> Order Fulfillment</a></li>
+                <li><a href="index.html"><i class="fas fa-globe"></i> Main Marketplace</a></li>
+            </ul>
+            <div style="margin-top:auto; padding-top:1rem; border-top:1px solid rgba(255,255,255,0.1);">
+                <button id="potterLogoutBtn" style="background:rgba(255,255,255,0.1); border:none; color:white; width:100%; padding:0.75rem; border-radius:8px; cursor:pointer;">
+                    <i class="fas fa-sign-out-alt"></i> Logout Workshop
+                </button>
+            </div>
+        </aside>
+
+        <main class="portal-content">
+            <header class="portal-header">
+                <div>
+                    <h2 style="margin:0; font-size:1.8rem;" id="potterNameBadge">Prajapati Pottery Works</h2>
+                    <p style="margin:0; color:#7A6A56; font-size:0.9rem;">Manage your artisanal listings and customer shipments</p>
+                </div>
+                <button class="nav-btn btn-primary" id="openAddProductModalBtn">
+                    <i class="fas fa-plus"></i> Add New Pottery Item
+                </button>
+            </header>
+
+            <!-- Stats Overview Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
+                    <div class="stat-info">
+                        <h4 id="statSales">₹0</h4>
+                        <p>Total Sales Revenue</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-shopping-bag"></i></div>
+                    <div class="stat-info">
+                        <h4 id="statOrders">0</h4>
+                        <p>Total Orders Received</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-cubes"></i></div>
+                    <div class="stat-info">
+                        <h4 id="statProducts">0</h4>
+                        <p>Listed Pottery Products</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                    <div class="stat-info">
+                        <h4 id="statPending">0</h4>
+                        <p>Pending Fulfillment</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Catalog Box -->
+            <div class="card-box" id="productsSection">
+                <div class="card-box-header">
+                    <h3><i class="fas fa-boxes"></i> Your Pottery Product Catalog</h3>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Product Item</th>
+                                <th>Category</th>
+                                <th>Selling Price</th>
+                                <th>Inventory Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="potterProductsTable">
+                            <!-- Populated by potter.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Order Fulfillment Box -->
+            <div class="card-box" id="ordersSection">
+                <div class="card-box-header">
+                    <h3><i class="fas fa-truck-loading"></i> Customer Orders for Your Pottery</h3>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer Info</th>
+                                <th>Pottery Items Ordered</th>
+                                <th>Total</th>
+                                <th>Fulfillment Status</th>
+                                <th>Order Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="potterOrdersTable">
+                            <!-- Populated by potter.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth-modal.js"></script>
+    <script src="js/potter.js"></script>
+</body>
+</html>
